@@ -1,0 +1,15 @@
+@import 'bootstrap';
+/* Steam-like Color Palette */
+:root {
+  --steam-dark-blue: #1b2838;
+  --steam-blue: #2a475e;
+  --steam-light-blue: #66c0f4;
+  --steam-green: #90ba3c;
+  --steam-dark-green: #688f2a;
+  --steam-gray: #4c6b22;
+  --steam-light-gray: #8f98a0;
+  --steam-dark-gray: #2e3440;
+  --steam-black: #171a21;
+  --steam-white: #ffffff;
+  --steam-orange: #ff6b35;
+}
