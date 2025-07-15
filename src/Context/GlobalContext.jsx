@@ -8,8 +8,7 @@ function GlobalProvider({ children }) {
         fetch('http://127.0.0.1:8000/api/videogames/')
             .then(response => response.json())
             .then(data => {
-                setGames(data);
-                console.log('Games fetched:', data);
+                setGames(data.data);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -17,7 +16,7 @@ function GlobalProvider({ children }) {
     }, []);
 
     return (
-        <GlobalContext.Provider value={{ games, setGames }}>
+        <GlobalContext.Provider value={{ games }}>
             {children}
         </GlobalContext.Provider>
     );

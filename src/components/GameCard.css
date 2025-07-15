@@ -1,0 +1,329 @@
+.game-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--steam-gradient-primary);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(102, 192, 244, 0.1);
+    border: 1px solid rgba(102, 192, 244, 0.1);
+    cursor: pointer;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(102, 192, 244, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.game-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 12px 30px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(102, 192, 244, 0.3),
+        inset 0 1px 0 rgba(102, 192, 244, 0.2);
+    border-color: rgba(102, 192, 244, 0.4);
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.game-card:active {
+    transform: translateY(-4px) scale(1.01);
+}
+
+.game-card__image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.game-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-card__image img {
+    transform: scale(1.05);
+}
+
+.game-card__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+}
+
+.game-card:hover .game-card__overlay {
+    opacity: 1;
+}
+
+.game-card__quick-info {
+    display: flex;
+    gap: 10px;
+}
+
+.game-card__year-badge,
+.game-card__price-badge {
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--steam-white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.game-card__price-badge {
+    background: rgba(144, 186, 60, 0.9);
+}
+
+.game-card__beta-badge,
+.game-card__free-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--steam-white);
+    z-index: 2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.game-card__beta-badge {
+    background: var(--steam-orange);
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+.game-card__free-badge {
+    background: var(--steam-green);
+    box-shadow: 0 0 10px rgba(144, 186, 60, 0.5);
+}
+
+.game-card__content {
+    padding: 20px;
+    color: var(--steam-white);
+}
+
+.game-card__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--steam-light-blue);
+    line-height: 1.3;
+}
+
+.game-card__developer {
+    font-size: 0.9rem;
+    color: var(--steam-light-gray);
+    margin-bottom: 12px;
+}
+
+.game-card__description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.game-card__genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.game-card__genre-tag {
+    background: rgba(102, 192, 244, 0.2);
+    color: var(--steam-light-blue);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(102, 192, 244, 0.3);
+}
+
+.game-card__platforms {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.game-card__platform-icon {
+    background: var(--steam-dark-gray);
+    color: var(--steam-light-gray);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: 1px solid var(--steam-light-gray);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: help;
+}
+
+.game-card__platform-icon:hover {
+    background: var(--steam-blue);
+    color: var(--steam-white);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-card__platform-text {
+    font-size: 0.65rem;
+    display: none;
+}
+
+/* Mostra il testo della piattaforma solo su hover della card */
+.game-card:hover .game-card__platform-text {
+    display: inline;
+}
+
+.game-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-card__year {
+    color: var(--steam-light-gray);
+    font-size: 0.85rem;
+}
+
+.game-card__price {
+    background: var(--steam-green);
+    color: var(--steam-white);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Variant per visualizzazione in lista */
+.game-card.list {
+    display: flex;
+    height: 180px;
+    min-height: 180px;
+}
+
+.game-card.list .game-card__image {
+    width: 280px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.game-card.list .game-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+/* Stili specifici per la modalità lista */
+.game-card.list .game-card__title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.game-card.list .game-card__developer {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.game-card.list .game-card__genres {
+    margin-bottom: 15px;
+}
+
+.game-card.list .game-card__platforms {
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.game-card.list .game-card__footer {
+    margin-top: auto;
+}
+
+.game-card.list .game-card__description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+    .game-card {
+        margin-bottom: 20px;
+    }
+    
+    .game-card__image {
+        height: 160px;
+    }
+    
+    .game-card__content {
+        padding: 15px;
+    }
+    
+    .game-card__title {
+        font-size: 1.1rem;
+    }
+    
+    .game-card.list {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+    }
+    
+    .game-card.list .game-card__image {
+        width: 100%;
+        height: 160px;
+    }
+    
+    .game-card.list .game-card__content {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-card__content {
+        padding: 12px;
+    }
+    
+    .game-card__platforms {
+        flex-wrap: wrap;
+    }
+    
+    .game-card__genres {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,251 @@
+.game-detail {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--steam-black) 0%, var(--steam-dark-blue) 100%);
+    padding: 40px 0;
+}
+
+.game-detail__hero {
+    margin-bottom: 40px;
+    padding: 40px;
+    background: rgba(43, 71, 94, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 192, 244, 0.2);
+}
+
+.game-detail__hero-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.game-detail__image {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.game-detail__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.game-detail__beta-badge,
+.game-detail__free-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--steam-white);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.game-detail__beta-badge {
+    background: var(--steam-orange);
+}
+
+.game-detail__free-badge {
+    background: var(--steam-green);
+}
+
+.game-detail__info {
+    color: var(--steam-white);
+}
+
+.game-detail__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--steam-light-blue);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.game-detail__developer,
+.game-detail__year {
+    font-size: 1.1rem;
+    color: var(--steam-light-gray);
+    margin-bottom: 12px;
+}
+
+.game-detail__developer strong,
+.game-detail__year strong {
+    color: var(--steam-white);
+}
+
+.game-detail__price-section {
+    margin: 24px 0;
+}
+
+.game-detail__price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: var(--steam-green);
+    color: var(--steam-white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.game-detail__genres,
+.game-detail__platforms {
+    margin: 24px 0;
+}
+
+.game-detail__genres h3,
+.game-detail__platforms h3 {
+    font-size: 1.2rem;
+    color: var(--steam-light-blue);
+    margin-bottom: 12px;
+}
+
+.game-detail__genre-list,
+.game-detail__platform-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.game-detail__genre-tag {
+    background: rgba(102, 192, 244, 0.2);
+    color: var(--steam-light-blue);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(102, 192, 244, 0.3);
+}
+
+.game-detail__platform-tag {
+    background: var(--steam-dark-gray);
+    color: var(--steam-light-gray);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid var(--steam-light-gray);
+    transition: all 0.2s ease;
+}
+
+.game-detail__platform-tag:hover {
+    background: var(--steam-blue);
+    color: var(--steam-white);
+}
+
+.game-detail__description {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: rgba(43, 71, 94, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 192, 244, 0.2);
+}
+
+.game-detail__description h2 {
+    font-size: 1.8rem;
+    color: var(--steam-light-blue);
+    margin-bottom: 16px;
+}
+
+.game-detail__description p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.game-detail__related {
+    margin-bottom: 40px;
+}
+
+.game-detail__related h2 {
+    font-size: 1.8rem;
+    color: var(--steam-light-blue);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.game-detail__related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.game-detail__loading,
+.game-detail__not-found {
+    text-align: center;
+    padding: 100px 0;
+    color: var(--steam-light-blue);
+}
+
+.game-detail__loading h2,
+.game-detail__not-found h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.game-detail__not-found p {
+    font-size: 1.2rem;
+    color: var(--steam-light-gray);
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+    .game-detail {
+        padding: 20px 0;
+    }
+    
+    .game-detail__hero {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .game-detail__hero-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .game-detail__title {
+        font-size: 2rem;
+    }
+    
+    .game-detail__description {
+        padding: 20px;
+    }
+    
+    .game-detail__related-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-detail__hero {
+        padding: 15px;
+    }
+    
+    .game-detail__title {
+        font-size: 1.6rem;
+    }
+    
+    .game-detail__price {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+    
+    .game-detail__description {
+        padding: 15px;
+    }
+    
+    .game-detail__description h2 {
+        font-size: 1.4rem;
+    }
+    
+    .game-detail__description p {
+        font-size: 1rem;
+    }
+}
