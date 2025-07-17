@@ -16,67 +16,68 @@ const getPlatformIcon = (platformName) => {
 
 export default function GameCard({ game, variant = 'grid' }) {
     const baseImageUrl = 'http://127.0.0.1:8000/storage/';
-    
+
     return (
-        <Link to={`/game/${game.id}`} className={`game-card ${variant}`}>
-            <div className="game-card__image">
-                <img 
-                    src={`${baseImageUrl}${game.image}`} 
+        <Link to={`/game/${game.id}`} className={`game-card ${variant} ${variant === 'list' ? 'd-flex flex-column flex-md-row' : ''}`}>
+            <div className={`game-card_image ${variant === 'list' ? 'flex-shrink-0' : ''}`}>
+                <img
+                    src={`${baseImageUrl}${game.image}`}
                     alt={game.title}
+                    className="w-100 h-100"
                     onError={(e) => {
                         e.target.src = '/placeholder-game.jpg'; // fallback image
                     }}
                 />
-                {game.is_beta === 1 && <span className="game-card__beta-badge">BETA</span>}
-                {parseFloat(game.price) === 0 && <span className="game-card__free-badge">FREE</span>}
-                
+                {game.is_beta === 1 && <span className="game-card_beta-badge">BETA</span>}
+                {parseFloat(game.price) === 0 && <span className="game-card_free-badge">FREE</span>}
+
                 {/* Overlay con informazioni rapide */}
-                <div className="game-card__overlay">
-                    <div className="game-card__quick-info">
-                        <span className="game-card__year-badge">{game.release_year}</span>
-                        <span className="game-card__price-badge">
+                <div className="game-card_overlay">
+                    <div className="game-card_quick-info d-flex gap-2">
+                        <span className="game-card_year-badge">{game.release_year}</span>
+                        <span className="game-card_price-badge">
                             {parseFloat(game.price) === 0 ? 'FREE' : `€${game.price}`}
                         </span>
                     </div>
                 </div>
             </div>
-            
-            <div className="game-card__content">
-                <h3 className="game-card__title">{game.title}</h3>
-                <p className="game-card__developer">{game.developer}</p>
-                <p className="game-card__description">
-                    {game.description.length > 100 
-                        ? `${game.description.substring(0, 100)}...` 
+
+            <div className={`game-card_content ${variant === 'list' ? 'flex-fill d-flex flex-column' : ''}`}>
+                <h3 className="game-card_title">{game.title}</h3>
+                <p className="game-card_developer">{game.developer}</p>
+                <p className="game-card_description">
+                    {game.description.length > 100
+                        ? `${game.description.substring(0, 100)}...`
                         : game.description
                     }
                 </p>
-                
-                <div className="game-card__genres">
+
+                <div className="game-card_genres d-flex flex-wrap gap-2 mb-3">
                     {game.genres.slice(0, 3).map(genre => (
-                        <span key={genre.id} className="game-card__genre-tag">
+                        <span key={genre.id} className="game-card_genre-tag">
                             {genre.name}
                         </span>
                     ))}
                 </div>
-                
-                <div className="game-card__platforms">
+
+                <div className="game-card_platforms d-flex flex-wrap gap-2 mb-3">
                     {game.platforms.slice(0, 4).map(platform => (
-                        <span 
-                            key={platform.id} 
-                            className="game-card__platform-icon" 
+                        <span
+                            key={platform.id}
+                            className="game-card_platform-icon"
                             title={platform.name}
                         >
                             {getPlatformIcon(platform.name)}
-                            <span className="game-card__platform-text">
+                            <span className="game-card_platform-text">
                                 {platform.name.length > 8 ? platform.name.substring(0, 8) + '...' : platform.name}
                             </span>
                         </span>
                     ))}
                 </div>
-                
-                <div className="game-card__footer">
-                    <span className="game-card__year">{game.release_year}</span>
-                    <span className="game-card__price">
+
+                <div className={`game-card_footer d-flex justify-content-between align-items-center ${variant === 'list' ? 'mt-auto' : ''}`}>
+                    <span className="game-card_year">{game.release_year}</span>
+                    <span className="game-card_price">
                         {parseFloat(game.price) === 0 ? 'FREE' : `€${game.price}`}
                     </span>
                 </div>

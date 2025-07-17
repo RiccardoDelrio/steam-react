@@ -13,7 +13,7 @@
   --steam-black: #171a21;
   --steam-white: #ffffff;
   --steam-orange: #ff6b35;
-  
+
   /* Gradients */
   --steam-gradient-primary: linear-gradient(135deg, var(--steam-dark-blue) 0%, var(--steam-blue) 100%);
   --steam-gradient-secondary: linear-gradient(135deg, var(--steam-black) 0%, var(--steam-dark-blue) 100%);
@@ -45,7 +45,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 50%, rgba(102, 192, 244, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(144, 186, 60, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 40% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
@@ -54,8 +54,15 @@ body::before {
 }
 
 @keyframes subtleFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
 }
 
 /* Scrollbar personalizzata */
@@ -182,7 +189,9 @@ button:not(:disabled):hover::before {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Glow effects */
@@ -216,6 +225,7 @@ button:not(:disabled):hover::before {
 
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -242,7 +252,7 @@ button:not(:disabled):hover::before {
     background: white !important;
     color: black !important;
   }
-  
+
   .header,
   .footer {
     display: none !important;
