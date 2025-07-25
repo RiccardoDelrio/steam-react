@@ -7,8 +7,9 @@ import './Homepage.css';
 export default function Homepage() {
     const { games } = useGlobal();
     const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
-    const [sortBy, setSortBy] = useState('title'); // 'title', 'price', 'year'
+    const [sortBy, setSortBy] = useState('title');
     const [filterGenre, setFilterGenre] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
 
 
     // Estrai tutti i generi unici
@@ -29,8 +30,17 @@ export default function Homepage() {
 
         // Filtro per genere
         if (filterGenre !== 'all') {
-            filtered = games.filter(game =>
+            filtered = filtered.filter(game =>
                 game.genres.some(genre => genre.name === filterGenre)
+            );
+        }
+
+        // Filtro per ricerca testuale
+        if (searchTerm.trim()) {
+            filtered = filtered.filter(game =>
+                game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                game.developer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                game.description.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
@@ -48,7 +58,7 @@ export default function Homepage() {
         });
 
         return sorted;
-    }, [games, filterGenre, sortBy]);
+    }, [games, filterGenre, sortBy, searchTerm]);
 
     if (!games || games.length === 0) {
         return (
@@ -115,14 +125,44 @@ export default function Homepage() {
                     </div>
                 </section>
 
-                {/* Contatore risultati */}
-                <div className="homepage_results-count text-center">
-                    {filteredAndSortedGames.length} giochi trovati
-                    {filterGenre !== 'all' && (
-                        <span className="homepage_filter-info">
-                            {' '}• Filtro: <strong>{filterGenre}</strong>
-                        </span>
-                    )}
+                {/* Contatore risultati e Searchbar */}
+                <div className="homepage_results-search d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mb-4">
+                    <div className="homepage_results-count">
+                        {filteredAndSortedGames.length} giochi trovati
+                        {filterGenre !== 'all' && (
+                            <span className="homepage_filter-info">
+                                {' '}• Filtro: <strong>{filterGenre}</strong>
+                            </span>
+                        )}
+                        {searchTerm && (
+                            <span className="homepage_search-info">
+                                {' '}• Ricerca: <strong>"{searchTerm}"</strong>
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="homepage_search-container">
+                        <div className="input-group">
+                            <span className="input-group-text">🔍</span>
+                            <input
+                                type="text"
+                                className="form-control homepage_search-input"
+                                placeholder="Cerca giochi, sviluppatori..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            {searchTerm && (
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    type="button"
+                                    onClick={() => setSearchTerm('')}
+                                    title="Cancella ricerca"
+                                >
+                                    ✕
+                                </button>
+                            )}
+                        </div>
+                    </div>
                 </div>
 
                 {/* Griglia/Lista giochi */}
@@ -140,9 +180,25 @@ export default function Homepage() {
 
                 {/* Messaggio se nessun risultato */}
                 {filteredAndSortedGames.length === 0 && (
-                    <div className="homepage_no-results">
+                    <div className="homepage_no-results text-center py-5">
                         <h3>🎮 Nessun gioco trovato</h3>
-                        <p>Prova a cambiare i filtri di ricerca per trovare quello che stai cercando.</p>
+                        <p>
+                            {searchTerm ?
+                                `Nessun risultato per "${searchTerm}". Prova con altri termini di ricerca.` :
+                                'Prova a cambiare i filtri di ricerca per trovare quello che stai cercando.'
+                            }
+                        </p>
+                        {(searchTerm || filterGenre !== 'all') && (
+                            <button
+                                className="btn btn-primary mt-2"
+                                onClick={() => {
+                                    setSearchTerm('');
+                                    setFilterGenre('all');
+                                }}
+                            >
+                                Rimuovi tutti i filtri
+                            </button>
+                        )}
                     </div>
                 )}
             </div>

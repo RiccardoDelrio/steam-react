@@ -137,12 +137,59 @@
 
 .homepage_results-count {
     color: var(--steam-light-gray);
-    margin-bottom: 25px;
     font-size: 0.95rem;
     padding: 10px;
     background: rgba(43, 71, 94, 0.3);
     border-radius: 6px;
     border: 1px solid rgba(102, 192, 244, 0.1);
+}
+
+.homepage_filter-info,
+.homepage_search-info {
+    color: var(--steam-light-blue);
+    font-size: 0.85rem;
+}
+
+.homepage_search-container {
+    min-width: 300px;
+}
+
+.homepage_search-input {
+    background: var(--steam-dark-gray) !important;
+    color: var(--steam-white) !important;
+    border: 1px solid rgba(102, 192, 244, 0.3) !important;
+    border-left: none !important;
+}
+
+.homepage_search-input:focus {
+    background: var(--steam-dark-gray) !important;
+    color: var(--steam-white) !important;
+    border-color: var(--steam-light-blue) !important;
+    box-shadow: 0 0 0 2px rgba(102, 192, 244, 0.3) !important;
+}
+
+.homepage_search-input::placeholder {
+    color: var(--steam-light-gray) !important;
+}
+
+.homepage_search-container .input-group-text {
+    background: var(--steam-dark-gray);
+    color: var(--steam-light-blue);
+    border: 1px solid rgba(102, 192, 244, 0.3);
+    border-right: none;
+}
+
+.homepage_search-container .btn-outline-secondary {
+    background: var(--steam-dark-gray);
+    color: var(--steam-light-gray);
+    border: 1px solid rgba(102, 192, 244, 0.3);
+    border-left: none;
+}
+
+.homepage_search-container .btn-outline-secondary:hover {
+    background: var(--steam-blue);
+    color: var(--steam-white);
+    border-color: var(--steam-light-blue);
 }
 
 /* Animazione di entrata per le card */

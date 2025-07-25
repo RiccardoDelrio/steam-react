@@ -24,9 +24,7 @@ export default function GameCard({ game, variant = 'grid' }) {
                     src={`${baseImageUrl}${game.image}`}
                     alt={game.title}
                     className="w-100 h-100"
-                    onError={(e) => {
-                        e.target.src = '/placeholder-game.jpg'; // fallback image
-                    }}
+
                 />
                 {game.is_beta === 1 && <span className="game-card_beta-badge">BETA</span>}
                 {parseFloat(game.price) === 0 && <span className="game-card_free-badge">FREE</span>}
@@ -67,10 +65,7 @@ export default function GameCard({ game, variant = 'grid' }) {
                             className="game-card_platform-icon"
                             title={platform.name}
                         >
-                            {getPlatformIcon(platform.name)}
-                            <span className="game-card_platform-text">
-                                {platform.name.length > 8 ? platform.name.substring(0, 8) + '...' : platform.name}
-                            </span>
+                            {platform.name}
                         </span>
                     ))}
                 </div>
