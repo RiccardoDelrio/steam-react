@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useGlobal } from '../Context/GlobalContext';
 import GameCard from '../components/GameCard';
 import './Homepage.css';
@@ -13,7 +13,7 @@ export default function Homepage() {
 
 
     // Estrai tutti i generi unici
-    const allGenres = React.useMemo(() => {
+    const allGenres = useMemo(() => {
         if (!games || games.length === 0) return [];
         const genresSet = new Set();
         games.forEach(game => {
@@ -23,7 +23,7 @@ export default function Homepage() {
     }, [games]);
 
     // Filtra e ordina i giochi
-    const filteredAndSortedGames = React.useMemo(() => {
+    const filteredAndSortedGames = useMemo(() => {
         if (!games || games.length === 0) return [];
 
         let filtered = games;
@@ -66,7 +66,6 @@ export default function Homepage() {
                 <div className="container">
                     <div className="homepage_loading">
                         <h2>Caricamento giochi...</h2>
-                        <div className="loading-spinner"></div>
                     </div>
                 </div>
             </div>
